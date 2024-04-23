@@ -35,3 +35,12 @@ git checkout legebuild
 git rebase --onto v0.50.30 origin/master
 git push origin -f
 ```
+
+## Build new image
+```bash
+./gradlew :airbyte-integrations:connectors:source-mssql:clean
+./gradlew :airbyte-integrations:connectors:source-mssql:buildConnectorImage
+
+docker tag airbyte/source-mssql:dev <new-image>
+docker push <new-image>
+```
