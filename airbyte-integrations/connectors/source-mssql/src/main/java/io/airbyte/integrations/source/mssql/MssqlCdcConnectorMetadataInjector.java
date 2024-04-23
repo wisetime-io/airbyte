@@ -43,6 +43,7 @@ public class MssqlCdcConnectorMetadataInjector implements CdcMetadataInjector<Ms
     final String commitLsn = source.get("commit_lsn").asText();
     final String eventSerialNo = source.get("event_serial_no").asText();
     event.put(CDC_LSN, commitLsn);
+    event.put("_ab_cdc_snapshot", false);
     event.put(CDC_EVENT_SERIAL_NO, eventSerialNo);
     event.put(CDC_DEFAULT_CURSOR, getCdcDefaultCursor());
   }
@@ -52,7 +53,8 @@ public class MssqlCdcConnectorMetadataInjector implements CdcMetadataInjector<Ms
                                                       final String transactionTimestamp,
                                                       final MssqlDebeziumStateAttributes debeziumStateAttributes) {
     record.put(CDC_UPDATED_AT, transactionTimestamp);
-    record.put(CDC_EVENT_SERIAL_NO, 1);
+    record.put("_ab_cdc_snapshot", true);
+    record.put(CDC_EVENT_SERIAL_NO, "1");
     record.put(CDC_LSN, debeziumStateAttributes.lsn().toString());
     record.put(CDC_DELETED_AT, (String) null);
     record.put(CDC_DEFAULT_CURSOR, getCdcDefaultCursor());

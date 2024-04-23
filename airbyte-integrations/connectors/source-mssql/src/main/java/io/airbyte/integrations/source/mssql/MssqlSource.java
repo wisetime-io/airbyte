@@ -532,6 +532,7 @@ public class MssqlSource extends AbstractJdbcSource<JDBCType> implements Source 
     properties.set(CDC_LSN, stringType);
     properties.set(CDC_UPDATED_AT, stringType);
     properties.set(CDC_DELETED_AT, stringType);
+    properties.set("_ab_cdc_snapshot", Jsons.jsonNode(ImmutableMap.of("type", "boolean")));
     properties.set(CDC_EVENT_SERIAL_NO, stringType);
     properties.set(CDC_DEFAULT_CURSOR, airbyteIntegerType);
 

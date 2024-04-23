@@ -123,6 +123,12 @@ public class MssqlCdcHelper {
       props.setProperty("driver.trustServerCertificate", "true");
     }
 
+    JdbcUtils.parseJdbcParameters(config, JdbcUtils.JDBC_URL_PARAMS_KEY, MssqlSource.JDBC_DELIMITER)
+        .forEach((key, value) -> {
+          String driverKey = "driver.%s".formatted(key);
+          props.setProperty(driverKey, value);
+        });
+
     return props;
   }
 
