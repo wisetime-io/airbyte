@@ -10,8 +10,8 @@ git remote set-url --push upstream DISABLE
 
 You can list all your remotes with `git remote -v`. You should see:
 ```
-origin	git@github.com:wisetime-io/airbyte-builder.git (fetch)
-origin	git@github.com:wisetime-io/airbyte-builder.git (push)
+origin	git@github.com:wisetime-io/airbyte.git (fetch)
+origin	git@github.com:wisetime-io/airbyte.git (push)
 upstream	https://github.com/airbytehq/airbyte.git (fetch)
 upstream	DISABLE (push)
 ```
@@ -31,8 +31,8 @@ And solve the conflicts if any.
 
 then rebase against version:
 ```
-git checkout legebuild
-git rebase --onto v0.50.30 origin/master
+git checkout wisetime
+git rebase --onto v0.57.3 origin/master
 git push origin -f
 ```
 
